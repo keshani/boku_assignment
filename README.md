@@ -11,9 +11,9 @@ execute below command
 -Copy that file to tomcat webapps directory
 -Start the tomcat and application will be up and running in the 1337 port
 
-## How to send request rest end
+## How to send request to rest api
 -curl -X POST -d "1" "http://localhost:1337/assignment-0.0.1-SNAPSHOT/boku/accumulator/process_requests"
 
-## Versios
+## Used Versions of library and Tools
 Tomcat : Use 10 or above
 Java Vesrion: 17
