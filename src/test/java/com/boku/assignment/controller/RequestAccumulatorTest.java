@@ -212,11 +212,34 @@ class RequestAccumulatorTest {
         }
 
         @Test
-        void test_request_with_wrong_end_request() {
+        void test_request_with_wrong_end_request_format() {
             try {
                 MvcResult result = mockMvc.perform(post("/boku/accumulator/process_requests")
                                 .contentType(MediaType.TEXT_PLAIN)
                                 .content("end fff hhhh"))
+                        .andExpect(request().asyncStarted())
+                        .andReturn();
+
+                MvcResult content =  mockMvc.perform(asyncDispatch(result))
+                        .andExpect(status().isBadRequest())
+                        .andReturn();
+
+                String retriveContent = content.getResponse().getContentAsString();
+
+                CompletableFuture<String> expect = new ObjectMapper().readValue(retriveContent, CompletableFuture.class);
+                assertTrue(expect.isCompletedExceptionally());
+                assertThrows(IllegalArgumentException.class,()->expect.get());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Test
+        void test_request_with_wrong_end_request_without_id() {
+            try {
+                MvcResult result = mockMvc.perform(post("/boku/accumulator/process_requests")
+                                .contentType(MediaType.TEXT_PLAIN)
+                                .content("end"))
                         .andExpect(request().asyncStarted())
                         .andReturn();
 

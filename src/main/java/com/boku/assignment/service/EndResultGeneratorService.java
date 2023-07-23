@@ -30,7 +30,7 @@ public class EndResultGeneratorService {
             }
         } catch (Exception ex) {
             LOGGER.error("EndResultGeneratorService::processRequest error occurred while processing request Error", ex);
-            this.completeRequest(request, ex.getMessage());
+            request.sendErrorResponse(ex);
         }
     }
 

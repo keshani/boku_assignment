@@ -38,6 +38,9 @@ public class ClientNumberRequest {
     public void sendResponse(String endResultValue) {
         this.response.complete(endResultValue);
     }
+    public void sendErrorResponse(Exception ex) {
+        this.response.completeExceptionally(ex);
+    }
 
     public UUID getId() {
         return id;
