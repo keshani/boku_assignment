@@ -1,6 +1,5 @@
 package com.boku.assignment.message;
 
-import com.boku.assignment.controller.RequestAccumulator;
 import com.boku.assignment.model.ClientNumberRequest;
 import com.boku.assignment.service.EndResultGeneratorService;
 import org.slf4j.Logger;

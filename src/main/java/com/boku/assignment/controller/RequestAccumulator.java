@@ -1,12 +1,13 @@
 package com.boku.assignment.controller;
 
-import com.boku.assignment.model.ClientNumberRequest;
-import com.boku.assignment.message.MessageProducer;
 import com.boku.assignment.service.RequestAccumulatorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -15,7 +16,6 @@ import java.util.concurrent.CompletableFuture;
 public class RequestAccumulator {
 
     Logger LOGGER = LoggerFactory.getLogger(RequestAccumulator.class);
-
     private RequestAccumulatorService requestAccumulatorService;
 
     @Autowired
@@ -30,7 +30,7 @@ public class RequestAccumulator {
         try {
             result = this.requestAccumulatorService.processClientRequest(param);
         } catch (Exception ex) {
-            LOGGER.error("RequestAccumulator::accumulatRequest error ocuured :" , ex);
+            LOGGER.error("RequestAccumulator::accumulatRequest error occurred :" , ex);
             if(result == null) {
                 result = new CompletableFuture<String>();
             }
@@ -38,5 +38,4 @@ public class RequestAccumulator {
         }
         return result;
     }
-
 }

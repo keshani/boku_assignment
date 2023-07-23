@@ -4,7 +4,6 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public class ClientNumberRequest {
-
     private UUID id;
     private String sendValue;
     private CompletableFuture<String> response;

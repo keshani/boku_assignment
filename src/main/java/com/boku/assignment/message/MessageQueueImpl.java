@@ -30,7 +30,6 @@ public class MessageQueueImpl implements MessageQueue {
         ClientNumberRequest request = currentRequests.take();
         historyRequests.put(request);
         return request;
-
     }
 
 }

@@ -46,5 +46,4 @@ public class RequestAccumulatorServiceImpl implements RequestAccumulatorService{
                     " with \"end \" followed by space and the another string ");
         }
     }
-
 }

@@ -1,6 +1,5 @@
 package com.boku.assignment.service;
 
-import com.boku.assignment.message.MessageConsumerImpl;
 import com.boku.assignment.model.ClientNumberRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

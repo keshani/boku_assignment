@@ -14,15 +14,11 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebAppConfiguration
@@ -70,7 +66,6 @@ class RequestAccumulatorTest {
     @Test
     void test_request_send_with_several_end_request() {
         try {
-
             String[] params = new String[]{"10","20","30","-20","end firstRound", "20","30",
                               "end secondRound", "20","-40","90", "end thirdRound"};
             MvcResult[] results = new MvcResult[12];
@@ -83,7 +78,6 @@ class RequestAccumulatorTest {
                         .andReturn();
                 results[i] = result;
             }
-
             for(int i=0; i<results.length; i++) {
                 String expected = "40 firstRound";
                 if(8<=i) {
@@ -240,5 +234,4 @@ class RequestAccumulatorTest {
             }
         }
     }
-
 }
